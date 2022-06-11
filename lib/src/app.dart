@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mystock/src/pages/home/home_page.dart';
+import 'package:mystock/src/pages/login/login_page.dart';
 
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
@@ -11,7 +11,7 @@ class App extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const HomePage(title: 'Flutter Demo Home Page'),
+      home: const LoginPage(),
     );
   }
 }
