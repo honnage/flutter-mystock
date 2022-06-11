@@ -6,6 +6,9 @@ class Theme {
   // static const Color gradientStart = Color(0xFF24c6dc);
   // static const Color gradientEnd = Color(0xFFfff);
 
+  // static const Color gradientStart = Color(0xFF514a9d);
+  // static const Color gradientEnd = Color(0xFF24c6dc);
+
   static const Color gradientStart = Color(0xFF514a9d);
   static const Color gradientEnd = Color(0xFF24c6dc);
 
