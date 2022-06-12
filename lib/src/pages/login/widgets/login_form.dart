@@ -8,6 +8,7 @@ class LoginForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Stack(
+      alignment: Alignment.bottomCenter,
       children: [
         _builForm(),
         _builSubmitFormButton(),
@@ -19,21 +20,39 @@ class LoginForm extends StatelessWidget {
     return Card(
       margin: const EdgeInsets.only(bottom: 22, left: 22, right: 22),
       elevation: 2.0,
+      color: Colors.white,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8.0),
       ),
       child: const Padding(
-        padding: EdgeInsets.all(22.0),
+        padding: EdgeInsets.only(
+          top: 20,
+          bottom: 58,
+          left: 28,
+          right: 28,
+        ),
         child: FormInput(),
       ),
     );
   }
 
-  Container _builSubmitFormButton() =>
-      Container(
+  Container _builSubmitFormButton() => Container(
         width: 220,
         height: 50,
         decoration: _boxDecoration(),
+        child: FlatButton(
+          onPressed: () {
+            // to do
+          },
+          child: const Text(
+            'LOGIN',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 25.0,
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+        ),
       );
 
   BoxDecoration _boxDecoration() {
@@ -41,8 +60,7 @@ class LoginForm extends StatelessWidget {
     const gradientEnd = custom_theme.Theme.gradientEnd;
 
     // ignore: prefer_function_declarations_over_variables
-    final boxShadowItem = (Color color) =>
-        BoxShadow(
+    final boxShadowItem = (Color color) => BoxShadow(
           color: color,
           offset: Offset(1.0, 6.0),
           blurRadius: 20.0,
@@ -65,7 +83,6 @@ class LoginForm extends StatelessWidget {
         ));
   }
 }
-
 
 Card _builForm() {
   return Card(
@@ -104,14 +121,12 @@ class FormInput extends StatelessWidget {
     );
   }
 
-  TextStyle _textStyle() =>
-      TextStyle(
+  TextStyle _textStyle() => TextStyle(
         fontWeight: FontWeight.w500,
         color: _color,
       );
 
-  TextField _buildPassword() =>
-      TextField(
+  TextField _buildPassword() => TextField(
         decoration: InputDecoration(
           border: InputBorder.none,
           labelText: 'Password',
@@ -125,8 +140,7 @@ class FormInput extends StatelessWidget {
         obscureText: true,
       );
 
-  TextField _buildUsername() =>
-      TextField(
+  TextField _buildUsername() => TextField(
         decoration: InputDecoration(
           border: InputBorder.none,
           labelText: 'Email Address',
