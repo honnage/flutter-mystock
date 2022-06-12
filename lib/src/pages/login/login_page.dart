@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mystock/src/config/theme.dart' as custom_theme;
 import 'package:mystock/src/pages/login/widgets/header.dart';
 
@@ -17,12 +18,20 @@ class LoginPage extends StatelessWidget {
             ),
           ),
           Column(
-            children: const [
-              Header(),
-              Text('form'),
-              Text('fogot password'),
-              Text('SSO'),
-              Text('register'),
+            children: [
+              const Header(),
+              IconButton(
+                  icon: const FaIcon(
+                    FontAwesomeIcons.camera,
+                    color: Colors.white,
+                  ),
+                  onPressed: () {
+                    // todo
+                  }),
+              const Text('form'),
+              const Text('fogot password'),
+              const Text('SSO'),
+              const Text('register'),
             ],
           ),
         ],
