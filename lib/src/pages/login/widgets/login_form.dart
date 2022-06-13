@@ -2,8 +2,32 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mystock/src/config/theme.dart' as custom_theme;
 
-class LoginFrom extends StatelessWidget {
+class LoginFrom extends StatefulWidget {
   const LoginFrom({Key? key}) : super(key: key);
+
+  @override
+  State<LoginFrom> createState() => _LoginFromState();
+}
+
+class _LoginFromState extends State<LoginFrom> {
+  late TextEditingController usernameController;
+  late TextEditingController passwordController;
+
+  @override
+  void initState() {
+    usernameController = TextEditingController();
+    passwordController = TextEditingController();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    // usernameController?.dispose();
+    // passwordController?.dispose();
+    usernameController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,9 +47,17 @@ class LoginFrom extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8.0),
         ),
-        child: const Padding(
-          padding: EdgeInsets.only(top:20, bottom: 58, left: 28, right: 28),
-          child: FormInput(),
+        child: Padding(
+          padding: const EdgeInsets.only(
+            top: 20,
+            bottom: 58,
+            left: 28,
+            right: 28,
+          ),
+          child: FormInput(
+            usernameController: usernameController,
+            passwordController: passwordController,
+          ),
         ),
       );
 
@@ -33,9 +65,11 @@ class LoginFrom extends StatelessWidget {
         width: 220,
         height: 50,
         decoration: _boxDecoration(),
+        // ignore: deprecated_member_use
         child: FlatButton(
           onPressed: () {
-            //TO DO
+            print('usernameController: ${usernameController.text}'); // ignore: avoid_print
+            print('passwordController: ${passwordController.text}'); // ignore: avoid_print
           },
           child: const Text(
             'LOGIN',
@@ -47,7 +81,6 @@ class LoginFrom extends StatelessWidget {
           ),
         ),
       );
-
 
   BoxDecoration _boxDecoration() {
     const gradientStart = custom_theme.Theme.gradientStart;
@@ -79,12 +112,22 @@ class LoginFrom extends StatelessWidget {
   }
 }
 
-class FormInput extends StatelessWidget {
-  final _color = Colors.black54;
+class FormInput extends StatefulWidget {
+  final TextEditingController usernameController;
+  final TextEditingController passwordController;
 
   const FormInput({
     Key? key,
+    required this.usernameController,
+    required this.passwordController,
   }) : super(key: key);
+
+  @override
+  State<FormInput> createState() => _FormInputState();
+}
+
+class _FormInputState extends State<FormInput> {
+  final _color = Colors.black54;
 
   @override
   Widget build(BuildContext context) {
@@ -108,6 +151,7 @@ class FormInput extends StatelessWidget {
       );
 
   TextField _buildPassword() => TextField(
+        controller: widget.passwordController,
         obscureText: true,
         decoration: InputDecoration(
           border: InputBorder.none,
@@ -122,6 +166,7 @@ class FormInput extends StatelessWidget {
       );
 
   TextField _buildUsername() => TextField(
+        controller: widget.usernameController,
         obscureText: false,
         decoration: InputDecoration(
           border: InputBorder.none,
